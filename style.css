@@ -70,7 +70,7 @@ body {
 }
 
 .dragged {
-    opacity: .6;
+    opacity: 0.2;
     background-color: #94aec1;
 
 }

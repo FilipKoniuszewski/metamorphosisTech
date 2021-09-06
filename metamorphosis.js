@@ -21,6 +21,7 @@ function initDragAndDrop() {
     initElements();
     shuffleCards();
     initDragEvents();
+
 }
 
 function initElements() {
@@ -42,10 +43,10 @@ function shuffleCards() {
 }
 
 function initDragEvents() {
+    initDropzone(ui.mixedCardsContainer);
     ui.cards.forEach(function (card) {
         initDraggable(card);
     });
-
     ui.slots.forEach(function (slot) {
         initDropzone(slot);
     });
@@ -98,12 +99,15 @@ function handleDrop(e) {
     e.preventDefault();
     const dropzone = e.currentTarget;
     console.log("Drop of", dropzone);
-
     if (dom.hasClass(dropzone, "card-slot")) {
         if (dom.isEmpty(dropzone)) {
             dropzone.appendChild(game.dragged);
             return;
         }
+    }
+    else if (dom.hasClass(dropzone, "mixed-cards")) {
+        dropzone.appendChild(game.dragged);
+            return;
     }
 }
 
