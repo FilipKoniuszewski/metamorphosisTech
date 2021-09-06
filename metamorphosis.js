@@ -83,10 +83,14 @@ function handleDragOver(e) {
 }
 
 function handleDragEnter(e) {
+    if (dom.isEmpty(e.currentTarget)) {
+        e.currentTarget.classList.add("over-zone");
+    }
     console.log("Drag enter of", e.currentTarget);
 }
 
 function handleDragLeave(e) {
+    e.currentTarget.classList.remove("over-zone");
     console.log("Drag leave of", e.currentTarget);
 }
 
@@ -95,7 +99,7 @@ function handleDrop(e) {
     const dropzone = e.currentTarget;
     console.log("Drop of", dropzone);
 
-    if (dom.hasClass(dropzone, "card-slot") || dom.hasClass(dropzone, "active-zone")) {
+    if (dom.hasClass(dropzone, "card-slot")) {
         if (dom.isEmpty(dropzone)) {
             dropzone.appendChild(game.dragged);
             return;
