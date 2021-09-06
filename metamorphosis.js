@@ -65,11 +65,13 @@ function initDropzone(dropzone) {
 }
 
 function handleDragStart(e) {
+    setDropZonesHighlight();
     game.dragged = e.currentTarget;
     console.log("Drag start of", game.dragged);
 }
 
 function handleDragEnd() {
+    setDropZonesHighlight(false);
     console.log("Drag end of", game.dragged);
     game.dragged = null;
 }
@@ -91,7 +93,7 @@ function handleDrop(e) {
     const dropzone = e.currentTarget;
     console.log("Drop of", dropzone);
 
-    if (dom.hasClass(dropzone, "card-slot")) {
+    if (dom.hasClass(dropzone, "card-slot") || dom.hasClass(dropzone, "active-zone")) {
         if (dom.isEmpty(dropzone)) {
             dropzone.appendChild(game.dragged);
             return;
@@ -99,4 +101,16 @@ function handleDrop(e) {
     }
 }
 
+function setDropZonesHighlight(highlight = true) {
+    const dropZones = document.querySelectorAll(".card-slot");
+    for (const dropZone of dropZones) {
+        if (highlight) {
+            dropZone.classList.add("active-zone");
+        } else {
+            dropZone.classList.remove("active-zone");
+        }
+    }
+}
+
 initDragAndDrop();
+
