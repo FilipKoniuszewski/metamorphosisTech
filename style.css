@@ -76,8 +76,8 @@ body {
 }
 
 .over-zone:empty {
-    border-color: darkred;
-    background-color: indianred;
+    border-color: #026d03;
+    background-color: #73cb8b;
 }
 
 .back-deck-highlight {
@@ -86,7 +86,7 @@ body {
 }
 
 .back-deck-over-zone {
-    border-color: darkred;
-    background-color: indianred;
+    border-color: #026d03;
+    background-color: #73cb8b;
 }
 

@@ -66,9 +66,9 @@ function initDropzone(dropzone) {
 }
 
 function handleDragStart(e) {
-    setDropZonesHighlight();
     this.classList.add('dragged');
     game.dragged = e.currentTarget;
+    setDropZonesHighlight();
     console.log("Drag start of", game.dragged);
 }
 
@@ -85,7 +85,7 @@ function handleDragOver(e) {
 
 function handleDragEnter(e) {
     if (e.currentTarget !== ui.mixedCardsContainer) {
-        if (dom.isEmpty(e.currentTarget)) {
+        if (e.currentTarget.parentNode.parentNode.classList[0] === game.dragged.getAttribute("data-animal") && !e.currentTarget.hasChildNodes()){
             e.currentTarget.classList.add("over-zone");
         }
     }
@@ -110,13 +110,14 @@ function handleDragLeave(e) {
 function handleDrop(e) {
     e.preventDefault();
     const dropzone = e.currentTarget;
+    const dropzoneType = dropzone.parentNode.parentNode.classList[0];
     console.log("Drop of", dropzone);
-    if (dom.hasClass(dropzone, "card-slot")) {
+    if (dom.hasClass(dropzone, "card-slot") && dropzoneType === game.dragged.getAttribute("data-animal")) {
         if (dom.isEmpty(dropzone)) {
             dropzone.appendChild(game.dragged);
             return;
+            }
         }
-    }
     else if (dom.hasClass(dropzone, "mixed-cards")) {
         dropzone.appendChild(game.dragged);
             return;
@@ -128,7 +129,9 @@ function setDropZonesHighlight(highlight = true) {
     const backZone = ui.mixedCardsContainer
     for (const dropZone of dropZones) {
         if (highlight) {
-            dropZone.classList.add("active-zone");
+            if (dropZone.parentNode.parentNode.classList[0] === game.dragged.getAttribute("data-animal") && !dropZone.hasChildNodes()){
+                dropZone.classList.add("active-zone");
+            }
         } else {
             dropZone.classList.remove("active-zone");
             dropZone.classList.remove("over-zone");
@@ -140,7 +143,6 @@ function setDropZonesHighlight(highlight = true) {
     else {
         backZone.classList.remove("back-deck-highlight")
         backZone.classList.remove("back-deck-over-zone")
-        // backZone.classList.remove("over-zone");
     }
 }
 
