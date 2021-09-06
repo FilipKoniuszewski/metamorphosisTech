@@ -66,12 +66,14 @@ function initDropzone(dropzone) {
 
 function handleDragStart(e) {
     setDropZonesHighlight();
+    this.classList.add('dragged');
     game.dragged = e.currentTarget;
     console.log("Drag start of", game.dragged);
 }
 
 function handleDragEnd() {
     setDropZonesHighlight(false);
+    this.classList.remove('dragged');
     console.log("Drag end of", game.dragged);
     game.dragged = null;
 }

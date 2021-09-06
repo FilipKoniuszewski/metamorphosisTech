@@ -62,11 +62,16 @@ body {
     border-radius: var(--border-radius);
 }
 
-
 .active-zone:empty {
     margin: 2px;
     border-radius: var(--border-radius);
     background: #94aec1;
     border: 2px solid #01243d;
+}
+
+.dragged {
+    opacity: .6;
+    background-color: #94aec1;
+
 }
 
