@@ -84,13 +84,14 @@ function handleDragOver(e) {
 }
 
 function handleDragEnter(e) {
-    if (e.currentTarget !== ui.mixedCardsContainer) {
-        if (e.currentTarget.parentNode.parentNode.classList[0] === game.dragged.getAttribute("data-animal") && !e.currentTarget.hasChildNodes()){
-            e.currentTarget.classList.add("over-zone");
+    if (game.dragged.getAttribute("data-animal")) {
+        if (e.currentTarget !== ui.mixedCardsContainer) {
+            if (e.currentTarget.parentNode.parentNode.classList[0] === game.dragged.getAttribute("data-animal") && !e.currentTarget.hasChildNodes()) {
+                e.currentTarget.classList.add("over-zone");
+            }
+        } else {
+            e.currentTarget.classList.add("back-deck-over-zone")
         }
-    }
-    else {
-        e.currentTarget.classList.add("back-deck-over-zone")
     }
     console.log("Drag enter of", e.currentTarget);
 }
