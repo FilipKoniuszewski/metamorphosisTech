@@ -74,7 +74,18 @@ body {
     background-color: #94aec1;
 
 }
+
 .over-zone:empty {
+    border-color: darkred;
+    background-color: indianred;
+}
+
+.back-deck-highlight {
+    border: 2px solid #01243d;
+    background: #94aec1;
+}
+
+.back-deck-over-zone {
     border-color: darkred;
     background-color: indianred;
 }

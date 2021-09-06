@@ -84,14 +84,26 @@ function handleDragOver(e) {
 }
 
 function handleDragEnter(e) {
-    if (dom.isEmpty(e.currentTarget)) {
-        e.currentTarget.classList.add("over-zone");
+    if (e.currentTarget !== ui.mixedCardsContainer) {
+        if (dom.isEmpty(e.currentTarget)) {
+            e.currentTarget.classList.add("over-zone");
+        }
+    }
+    else {
+        e.currentTarget.classList.add("back-deck-over-zone")
     }
     console.log("Drag enter of", e.currentTarget);
 }
 
 function handleDragLeave(e) {
-    e.currentTarget.classList.remove("over-zone");
+    if (e.dataTransfer.types.includes('type/dragged-box') &&
+        e.relatedTarget !== null &&
+        e.currentTarget !== e.relatedTarget.closest('.card-slot') ||
+        e.currentTarget !== e.relatedTarget.closest('.mixed-cards'))
+         {
+        this.classList.remove("over-zone");
+        this.classList.remove("back-deck-over-zone")
+    }
     console.log("Drag leave of", e.currentTarget);
 }
 
@@ -112,13 +124,23 @@ function handleDrop(e) {
 }
 
 function setDropZonesHighlight(highlight = true) {
-    const dropZones = document.querySelectorAll(".card-slot");
+    const dropZones = ui.slots;
+    const backZone = ui.mixedCardsContainer
     for (const dropZone of dropZones) {
         if (highlight) {
             dropZone.classList.add("active-zone");
         } else {
             dropZone.classList.remove("active-zone");
+            dropZone.classList.remove("over-zone");
         }
+    }
+    if (highlight) {
+        backZone.classList.add("back-deck-highlight")
+    }
+    else {
+        backZone.classList.remove("back-deck-highlight")
+        backZone.classList.remove("back-deck-over-zone")
+        // backZone.classList.remove("over-zone");
     }
 }
 
