@@ -90,3 +90,26 @@ body {
     background-color: #73cb8b;
 }
 
+#game-result{
+    font-family: Copperplate, Papyrus, fantasy;
+    display: none;
+    z-index: 20;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 30vw;
+    height: 30vh;
+    border-radius: 10px;
+    position: absolute;
+    top: 20vh;
+    left: 50%;
+    transform: translate(-50%,0);
+    margin-top: 10px;
+    box-shadow: 10px 10px 5px rgba(115, 203, 139, 0.7);
+    background-color: rgba(115, 203, 139, 0.8);
+}
+#result {
+    color: #01243d;
+    font-size: 200%;
+}
+

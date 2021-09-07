@@ -116,12 +116,18 @@ function handleDrop(e) {
     if (dom.hasClass(dropzone, "card-slot") && dropzoneType === game.dragged.getAttribute("data-animal")) {
         if (dom.isEmpty(dropzone)) {
             dropzone.appendChild(game.dragged);
+            if (winCheck()) {
+                document.getElementById("game-result").style.display = "flex";
+            }
             return;
             }
         }
     else if (dom.hasClass(dropzone, "mixed-cards")) {
         dropzone.appendChild(game.dragged);
-            return;
+        if (winCheck()) {
+            document.getElementById("game-result").style.display = "flex";
+        }
+        return;
     }
 }
 
@@ -145,6 +151,24 @@ function setDropZonesHighlight(highlight = true) {
         backZone.classList.remove("back-deck-highlight")
         backZone.classList.remove("back-deck-over-zone")
     }
+}
+
+function winCheck() {
+    let placedCards = document.querySelectorAll('.card-slot > .card');
+    if (placedCards.length < 8){
+        return false;
+    }
+    let lastOrder = 0;
+    for (const placedCard of placedCards) {
+        if (placedCard.dataset.order <= lastOrder) {
+            return false;
+        }
+        lastOrder = placedCard.dataset.order;
+    }
+    ui.cards.forEach(function (card) {
+        card.removeEventListener('dragstart', handleDragStart)
+    });
+    return true;
 }
 
 initDragAndDrop();
