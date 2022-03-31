@@ -1,4 +1,4 @@
-# Metamorphosis
+# Metamorphosis Game
 
 ## Story
 
@@ -13,3 +13,9 @@ We have some cards, each showing a stage in the process and we would like a drag
 - Drag and Drop in vanilla JavaScript.
 - Use HTML data attributes.
 - Use CSS styling.
+
+#Rules
+- the rules of the game are as follows: the development cards of the frog and the butterfly need to be put in correct spots
+if you want to try, click the link below :)
+
+https://filipkoniuszewski.github.io/metamorphosisTech/
