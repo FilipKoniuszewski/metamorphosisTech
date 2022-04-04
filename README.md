@@ -1,5 +1,7 @@
 # Metamorphosis Game
 
+- Codecool Project
+
 ## Story
 
 We have a great idea: programming is really fun but breeding frogs and butterflies is even more fun! :)
