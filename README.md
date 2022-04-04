@@ -10,7 +10,7 @@ So the decision is made, we want to start a new business line with some fancy fr
 
 We have some cards, each showing a stage in the process and we would like a drag-and-drop game so that we can practice.
 
-## What Did I Learn from this project
+## What I learned?
 
 - Drag and Drop in vanilla JavaScript.
 - Use HTML data attributes.
